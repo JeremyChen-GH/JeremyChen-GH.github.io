@@ -15,7 +15,7 @@
             <div>ChatRoom!!!</div>
         </div>
         <div class="nameInput">
-            <div>Your name</div>
+            <div>Your Name</div>
             <input type="text" id="name_txt" placeholder="輸入暱稱" value="">
         </div>
         <div class="chooseRoom">
@@ -98,7 +98,7 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background-image: url("css/background/bkg.png");
+        background-image: url("css/background/bg004.jpg");
         
         font-family: Helvetica, sans-serif;
     }
@@ -112,9 +112,10 @@
         margin: 25px 10px;
         height: calc(100% - 50px);
         text-align: center;
-        border: 5px solid rgb(26, 8, 1);
+        border: 2px solid rgb(233, 236, 27);
         border-radius: 5px;
-        background-image: url("css/background/basic.jpg");
+        background-color: rgba(255, 255, 255, 0.5);
+        
     }
 
     .title {     
@@ -129,37 +130,36 @@
         letter-spacing: 3px;
         color: #2F3640;
         text-shadow: 3px 3px #FEDC6B;
-        border: 10px solid rgb(207, 86, 86);
+        border: 1px solid rgb(86, 169, 207);
         border-radius: 5px;
-        background: rgb(226, 197, 173);  
+        background-image: url("css/background/bg007.jpg");
+        
     }
 
     .nameInput {
-        flex: 1;
+        height: auto;
         font-family: Brush Script Std, cursive;
         font-weight:200;
-        font-size: 30px;
-        color:rgb(19, 156, 235);
-        letter-spacing: 1px;
+        font-size: 20px;
+        color:rgb(18, 88, 129);
+        letter-spacing: 0px;
     }
 
     .chooseRoom {
         display: flex;
         flex: 1;
         flex-flow: wrap column;
-        justify-content: space-between;
-        margin:0px auto;
+        margin:5px auto;
         width: 20vw;    
-        padding: 10px;
+        padding: 5px;
         
     }
 
     .chooseRoom * {
         margin: 5px auto    ;
-        padding: 10px;
+        padding: auto;
         border-radius: 3px;
-        font-size: 1em;
-        font-weight: bold;
+        
     }
 
     .publicbtn {
@@ -185,25 +185,23 @@
         flex-flow: wrap column;
         
         width: 100%;
-        max-width: 400px;
+        max-width: 200px;
         margin:5px auto;
         
         border: 5px solid rgb(219, 212, 212);
-        background-image: url("css/background/content.jpeg");
+        background-image: url("css/background/bg006.jpg");
     }
 
     .listTitle {
-        border-bottom: 5px solid rgb(219, 212, 212);
-        margin: 5px;
+        margin: 2px;
         height: auto;
         font-family: Brush Script Std, cursive;
-        font-weight:200;
-        font-size: 25px;
+        font-weight:600;
+        font-size: 18px;
     }
 
     .roomList {
         overflow-y: auto;
-        font-family: Brush Script Std, cursive;
         font-weight:100;
         font-size: 15px;
     }
