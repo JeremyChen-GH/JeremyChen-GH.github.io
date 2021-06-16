@@ -1,8 +1,7 @@
 $(() => {
     var addr = 'https://jc-chatroom-test.herokuapp.com/';
     var count = 0;
-    var myDate = new Date();
-    var today = myDate.getHours()+":"+ myDate.getMinutes() +":"+myDate.getSeconds();
+    
     var last_ra;
     var last_tm;
     var user_name;
@@ -42,6 +41,8 @@ $(() => {
 
     $("#send").on("click", () => {
         const message = $("#msg").val();
+        var myDate = new Date();
+        var today = myDate.getHours()+":"+ myDate.getMinutes() +":"+myDate.getSeconds();
         $("#msg").val("");
         $.post(addr, { "ra" : getRandom(1000,50000), "name" : user_name, "time" : today, "message" : message });
     });
