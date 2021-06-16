@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to ChatRoom!!!</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <section class = "basic">
+        <div class="title">
+            <div>Welcome</div>
+            <div>to</div>
+            <div>ChatRoom!!!</div>
+        </div>
+        <div class="nameInput">
+            <div>Your name</div>
+            <input type="text" id="name_txt" placeholder="輸入暱稱" value="">
+        </div>
+        <div class="chooseRoom">
+            <button type="button" class="publicbtn" id="public_btn">加入公開聊天室</button>
+            <input type="text" class="chatID" id="chatID_txt" placeholder="輸入聊天室ID..." value="">
+            <button type="button" class="privatebtn" id="private_btn">加入私人聊天室</button>
+            
+        </div>
+        <div class="roomDev">
+            <div class="listTitle">房間清單</div>
+            <div class="roomList" id="rList"></div>
+        </div>
+    </section>
+</body>
+<script>
+    const public_btn = document.getElementById('public_btn');
+    const private_btn = document.getElementById('private_btn');
+    const btn = document.getElementById('btn');
+
+    let targetWindow = null;
+
+
+    public_btn.addEventListener('click', () => {
+        const name_txt = document.getElementById('name_txt').value;
+
+        if (name_txt==""){
+            alert('請確認名稱是否為空!');
+        } else{
+            document.cookie = 'name=' + encodeURIComponent(name_txt);
+            document.cookie = 'roomID=' + encodeURIComponent('public');   
+            window.open('./chatroom_01.html');              
+        }        
+
+    });
+
+    private_btn.addEventListener('click', () => {
+        const name_txt = document.getElementById('name_txt').value;
+        var chatID_txt = document.getElementById('chatID_txt').value;
+
+        if (name_txt==""||chatID_txt==""){
+            alert('請確認名稱和私人聊天室ID是否為空!');
+        } else{
+            chatID_txt = "private/" + chatID_txt;            
+            document.cookie = 'name=' + encodeURIComponent(name_txt);
+            document.cookie = 'roomID=' + encodeURIComponent(chatID_txt);
+            window.open('./chatroom_01.html'); 
+        }
+      
+    });
+
+    setInterval(() => {
+        $.getJSON("https://jc-chatroom-test.herokuapp.com/about/", function(data){
+            var d = data;
+            //console.log(d[ck].ra != last_ra) || (d[ck].time != last_tm);
+
+            $('#rList').empty();
+            for(var i = 0;i<data.length;i++){
+                $('#rList').append('<p>' + data[i].roomID + '</p>');
+            }
+                  
+        });
+    }, 1*1000);
+    
+    function syncDelay(milliseconds){
+        var start = new Date().getTime();
+        var end=0;
+        while( (end-start) < milliseconds){
+            end = new Date().getTime();
+        }
+    }
+</script>
+</html>
+<style>
+    html {
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: url("css/background/bkg.png");
+        
+        font-family: Helvetica, sans-serif;
+    }
+
+    .basic {
+        display: flex;
+        flex-flow: wrap column;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 867px;
+        margin: 25px 10px;
+        height: calc(100% - 50px);
+        text-align: center;
+        border: 5px solid rgb(26, 8, 1);
+        border-radius: 5px;
+        background-image: url("css/background/basic.jpg");
+    }
+
+    .title {     
+        margin-top: 10px;
+        margin-left: 30%;
+        margin-right: 30%;
+        padding: 10px;
+        font-family: Brush Script MT, Brush Script Std, cursive;
+        font-weight: 900;
+        font-size: 50px;
+        text-align:center;
+        letter-spacing: 3px;
+        color: #2F3640;
+        text-shadow: 3px 3px #FEDC6B;
+        border: 10px solid rgb(207, 86, 86);
+        border-radius: 5px;
+        background: rgb(226, 197, 173);  
+    }
+
+    .nameInput {
+        flex: 1;
+        font-family: Brush Script Std, cursive;
+        font-weight:200;
+        font-size: 30px;
+        color:rgb(19, 156, 235);
+        letter-spacing: 1px;
+    }
+
+    .chooseRoom {
+        display: flex;
+        flex: 1;
+        flex-flow: wrap column;
+        justify-content: space-between;
+        margin:0px auto;
+        width: 20vw;    
+        padding: 10px;
+        
+    }
+
+    .chooseRoom * {
+        margin: 5px auto    ;
+        padding: 10px;
+        border-radius: 3px;
+        font-size: 1em;
+        font-weight: bold;
+    }
+
+    .publicbtn {
+        flex: 3;
+        background: rgb(247, 133, 40);
+        color: #fff;
+    }
+
+    .chatID {
+        flex: 1;
+        background: #ddd;
+    }
+
+    .privatebtn {
+        flex: 3;
+        background: rgb(0, 196, 65);
+        color: #fff;
+    }
+
+    .roomDev {
+        display: flex;
+        flex: 3;
+        flex-flow: wrap column;
+        
+        width: 100%;
+        max-width: 400px;
+        margin:5px auto;
+        
+        border: 5px solid rgb(219, 212, 212);
+        background-image: url("css/background/content.jpeg");
+    }
+
+    .listTitle {
+        border-bottom: 5px solid rgb(219, 212, 212);
+        margin: 5px;
+        height: auto;
+        font-family: Brush Script Std, cursive;
+        font-weight:200;
+        font-size: 25px;
+    }
+
+    .roomList {
+        overflow-y: auto;
+        font-family: Brush Script Std, cursive;
+        font-weight:100;
+        font-size: 15px;
+    }
+
+    .roomList::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .roomList::-webkit-scrollbar-track {
+        background: #ddd;
+    }
+
+    .roomList::-webkit-scrollbar-thumb {
+        background: #bdbdbd;
+    }
+</style>
