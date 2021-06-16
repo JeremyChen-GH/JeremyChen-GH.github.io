@@ -105,7 +105,7 @@
 
     .basic {
         display: flex;
-        flex-flow: wrap column;
+        flex-flow: nowrap column;
         justify-content: space-between;
         width: 100%;
         max-width: 867px;
@@ -149,6 +149,7 @@
         display: flex;
         flex: 1;
         flex-flow: wrap column;
+        max-height: 150px;
         margin:5px auto;
         width: 20vw;    
         padding: 5px;
@@ -163,7 +164,7 @@
     }
 
     .publicbtn {
-        flex: 3;
+        flex: 1;
         background: rgb(247, 133, 40);
         color: #fff;
     }
@@ -174,17 +175,18 @@
     }
 
     .privatebtn {
-        flex: 3;
+        flex: 1;
         background: rgb(0, 196, 65);
         color: #fff;
     }
 
     .roomDev {
         display: flex;
-        flex: 3;
-        flex-flow: wrap column;
-        
+        flex: 1;
+        flex-flow: nowrap column;
+        height: auto;
         width: 100%;
+        max-height: 250px;
         max-width: 200px;
         margin:5px auto;
         
